@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<h3 style="font-family: fantasy;">Giriş Yap</h3>
+<hr>
+<br>
+
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <button type="submit" class="btn btn-primary" style="font-size:small;">Giriş Yap</button>
+</form>
+
+
+{% endblock body %}

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3 style="text-align: center;font-family:fantasy;">Markalar</h3><br>
+
+<br>
+{% if brand %}
+
+<div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Marka</th>
+        <th scope="col">Güncelle</th>
+        <th scope="col">Kaldır</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for brand in brand %}
+      <tr>
+      <tr>
+        <th scope="row" style="color: rgb(54, 80, 255);font-family:arial;font-size:small;padding-top:15px;">
+          {{ brand.id }}</a></th>
+        <td style="font-size:small;"><strong>{{ brand.brandName }}</strong></td>   
+        <td><a href="/Catalog/update_brand/{{brand.id}}"  class="btn btn-warning" style="font-size: x-small;">Güncelle</a></td> 
+        <td><a href="/Catalog/delete_brand/{{brand.id}}"  class="btn btn-danger" style="font-size: x-small;">Sil</a></td> 
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+
+{% else %}
+
+<p style="font-weight: unset;font-style: italic;">Henüz bir marka eklemediniz.</p>
+<br>
+
+
+{% endif %}
+<br>
+
+
+<a href="/Catalog/add_brand/" class="btn btn-success" style="font-size: small;">Ekle</a>
+<br>
+<br>
+<br><br><br>
+
+
+{% endblock body %}

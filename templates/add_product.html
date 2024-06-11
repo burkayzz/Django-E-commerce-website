@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+  <div class="row">
+    
+    <h2 style="font-family: fantasy;">Ürün Ekle</h2>
+    <hr>
+     <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }} 
+        <button type="submit" class="btn btn-success" style="font-size: x-small;">Kaydet</button>
+    </form>
+    
+   
+  </div>
+  <br><br><br><br><br>
+
+
+
+{% endblock body %}
+
+
+
+
+

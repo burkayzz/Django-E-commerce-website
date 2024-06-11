@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2 class="text-center" style="font-family: fantasy;">{{ category.categoryName }}</h2>
+<div class="container">
+  <div class="row">
+    <hr>
+    {% for product in products %}
+    {% if forloop.counter0|divisibleby:4 %}
+  </div>
+  <div class="row">
+    {% endif %}
+    <div class="col-lg-3 mb-4">
+      <div class="card border border-secondary shadow">
+        <a href="/Catalog/product/{{ product.id }}"><img src="{{ product.image.url }}" class="card-img-top"
+            alt="{{ product.productName }}" width="150px"></a>
+        <div class="card-body">
+          <a href="/Catalog/product/{{ product.id }}" style="text-decoration:none;color:black;">
+            <h5 class="card-title">{{ product.productName }}</h5>
+          </a>
+          <p class="card-text" style="color:blue;"><strong>Kategori:</strong> {{ product.category }}</p>
+          <p class="card-text" style="color:blue;"><strong>Marka:</strong> {{ product.brand }}</p>
+          <p class="card-text" style="color:green;"><strong>Fiyat:</strong> {{ product.unitPrice }} TL</p>
+        </div>
+        <div class="card-footer">
+          {% if user.is_superuser %}
+          <a href="{% url 'Catalog:detail' product.id %}" class="btn btn-primary"
+            style="font-size:x-small; display: inline-block;">İncele</a>
+          <a href="{% url 'Catalog:update_product' product.id %}" class="btn btn-success"
+            style="font-size:x-small; display: inline-block;">Güncelle</a>
+          <a href="{% url 'Catalog:delete_product' product.id %}" class="btn btn-danger"
+            style="font-size:x-small; display: inline-block;">Sil</a>
+
+          {% else %}
+          <a href="/Catalog/product/{{ product.id }}" class="btn btn-warning"
+            style="font-size:x-small; display: inline-block;">İncele</a>
+          <form action="{% url 'order:addtocart' product.id %}" method="post" style="display: inline-block; margin: 0;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary" style="font-size:x-small;">Sepete Ekle</button>
+          </form>
+
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+<br><br><br>
+{% endblock %}

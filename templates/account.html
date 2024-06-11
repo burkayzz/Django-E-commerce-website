@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<h3 style="text-align: center;font-family:fantasy;">Hesap Bilgilerim</h3>
+<hr>
+<br>
+
+
+{% if user.is_authenticated %}
+<div class="card" style="margin-inline-start:200px;margin-inline-end: 200px;">
+    <div class="card-header" style="font-weight:bold;">
+      Hesabım
+    </div>
+    <div class="card-body">
+      <p class="card-title" style="font-weight: lighter;">Kullanıcı adı: {{user.username}}</p>
+      <p class="card-text" style="font-weight: lighter;">İsim: {{user.first_name}}</p>
+      <p class="card-text" style="font-weight: lighter;">Soyisim: {{user.last_name}}</p>
+      <p class="card-text" style="font-weight: lighter;">E-Posta: {{user.email}}</p>
+      <hr>
+      <br>
+      <a href="/user/update_account/" class="btn btn-success" style="font-size: x-small;">Güncelle</a> 
+    </div>
+  </div>
+  
+  
+  
+  
+  </ul>
+  <br>
+  <br><br><br><br>
+  <br><br><br><br>
+
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
+

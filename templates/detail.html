@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">{{product.productName}}</h1>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2" style="font-size:small;">PC Lab Organization</div>
+                    <!-- Post categories-->
+                    <a href="{% url 'Catalog:category_products' product.category.id %}" class="badge bg-primary text-decoration-none link-light">{{product.category.categoryName}}</a>
+                    <a class="badge bg-primary text-decoration-none link-light">{{product.brand.brandName}}</a>
+                    <a class="badge bg-success text-decoration-none link-light">Stok Adeti:{{product.unitsInStock}}</a>
+
+                </header>
+                <!-- Preview image figure-->
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{ product.image.url }}" alt="..."
+                        style="width: 350px; height: auto;" /></figure>
+                <!-- Post content-->
+                
+                
+
+                <section class="mb-5">
+
+                    <h4 style="color: green; font-size: 1.2em;">{{ product.unitPrice}} ₺</h4>
+                    {% if  not user.is_superuser %}
+                <form action="{% url 'order:addtocart' product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success" style="font-size:small;">Sepete Ekle</button>
+                </form>
+
+                {% endif %}
+
+
+                    <h2 class="fw-bolder mb-4 mt-5">{{product.productName}}</h2>
+                    <p class="fs-5 mb-4">{{product.description}}</p>
+
+                
+                {% if  user.is_superuser %}
+                <a href="{% url 'Catalog:update_product' product.id %}" class="btn btn-success"
+                        style="font-size:x-small; display: inline-block;">Güncelle</a>
+                <a href="{% url 'Catalog:delete_product' product.id %}" class="btn btn-danger"
+                        style="font-size:x-small; display: inline-block;">Sil</a>
+
+                    
+                {% endif %}
+                        
+                    
+
+
+                    <br><br><br><br><br><br>
+
+
+            </article>
+
+
+        </div>
+
+
+
+
+
+        {% endblock body %}

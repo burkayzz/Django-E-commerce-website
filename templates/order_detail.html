@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+{% if order %}
+  <h4 style="text-align: left;font-style:initial;font-family:fantasy;">Sipariş Detayı - C#{{order.id}}</h4>
+    {% if user.is_superuser %}
+      <h6 style="text-align: right;font-family: 'Times New Roman', Times, serif;">{{request.user.username}} #{{request.user.id}} </h6>
+      <hr>     
+    {% endif %}
+
+    <br>
+
+
+
+{% for item in item %}
+
+<ul class="list-group-item list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold"> <a href="/Catalog/product/{{item.product.id}}" style="color: rgb(68, 68, 68);"><img
+            src="{{ item.product.image.url }}" alt="" style="width: 50px;"> {{item.product.productName}}</a></div>
+      <a class="badge bg-primary text-decoration-none link-light" href="/Catalog/category/{{item.product.category.id}}">{{item.product.category.categoryName}}</a>     
+      <a class="badge bg-primary text-decoration-none link-light">{{item.product.brand.brandName}}</a>
+      <a class="badge bg-success text-decoration-none link-light">{{item.product.unitPrice}} TL</a>
+    </div>
+    <span class="badge bg-primary rounded-pill">{{item.quantity}}</span>
+  </li>
+  <br>
+
+
+
+
+</ul>
+<br>
+
+
+{% endfor %}
+
+
+<br>
+<h6 style="font-style: italic;">Teslimat Adresi</h6>
+<div class="card">
+  <div class="card-header" style="font-weight:bold;">
+    {{order.title}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title" style="font-weight:unset;">{{order.name_lastname}}</h5>
+    <h6>Adres:</h6>
+    <hr>
+    <p class="card-text" style="font-weight: lighter;">{{order.adres}}</p>
+
+  </div>
+</div>
+{% endif %}
+
+
+<br> <br>
+
+
+
+<a href="#" class="btn btn-warning" style="font-size: small;">İptal et</a>
+<br>
+<br><br><br><br>
+{% endblock body %}

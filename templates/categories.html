@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3 style="text-align: center;font-family:fantasy;">Kategoriler</h3><br>
+
+<br>
+{% if category %}
+
+<div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Kategori</th>
+        <th scope="col">Ürünler</th>
+        <th scope="col">Güncelle</th>
+        <th scope="col">Kaldır</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in category %}
+      <tr>
+      <tr>
+        <th scope="row" style="color: rgb(54, 80, 255);font-family:arial;font-size:small;padding-top:15px;">
+          {{ category.id }}</a></th>
+        <td style="font-size:small;"><strong>{{ category.categoryName }}</strong></td>
+        <td><a href="/Catalog/category/{{category.id}}"  class="btn btn-primary" style="font-size: x-small;">İncele</a></td>  
+        <td><a href="/Catalog/update_category/{{category.id}}"  class="btn btn-warning" style="font-size: x-small;">Güncelle</a></td>  
+        <td><a href="/Catalog/delete_category/{{category.id}}"  class="btn btn-danger" style="font-size: x-small;"><i class="bi bi-trash3"></i></a></td> 
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+
+{% else %}
+
+<p style="font-weight: unset;font-style: italic;">Henüz bir kategori oluşturmadınız.</p>
+<br>
+
+
+{% endif %}
+<br>
+
+
+<a href="/Catalog/add_category/" class="btn btn-success" style="font-size: small;">Ekle <i class="bi bi-plus-circle-fill"></i></a>
+<br>
+<br>
+<br><br><br>
+
+
+{% endblock body %}

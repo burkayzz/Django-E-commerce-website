@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<h2 style="text-align: center;font-style:initial;font-family: fantasy;">Tüm Kargolar</h2>
+
+<br><br>
+
+{% if cargos %}
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Cargo No</th>
+                <th scope="col">Sipariş Durumu</th>
+                <th scope="col">Sipariş Tarihi</th>
+                <th scope="col">Sipariş</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for cargos in cargos %}
+            <tr>
+                <th scope="row" style="color: rgb(54, 80, 255);font-family:arial;font-size:small;padding-top:15px;">
+                    {{ cargos.id }}
+                </th>
+                <td style="font-size:small;">{{ cargos.status }}</td>
+                <td style="font-size:small;">{{ cargos.created_at }}</td>
+                <th scope="row"
+                    style="color: rgb(54, 80, 255);font-family:arial;font-size:small;padding-top:15px;font-size:small;">
+                    <a href="{% url 'order:order_detail' cargos.order.id %}" class="btn btn-primary"
+                        style="border-radius:40px;font-size:x-small;margin-bottom:7px;">C#{{ cargos.order.id }}</a>
+                </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p style="font-weight: unset;font-style: italic;">Henüz bir sipariş yok</p>
+<br><br><br><br><br>
+{% endif %}
+
+
+
+
+
+{% endblock body %}

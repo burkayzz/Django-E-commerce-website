@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3 style="text-align: center;font-family:fantasy;">Tüm Siparişler</h3>
+<hr>
+<br>
+{% if order %}
+
+<div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Sipariş No</th>
+        <th scope="col">Kullanıcı</th>
+        <th scope="col">Sipariş Durumu</th>
+        <th scope="col">Sipariş Tarihi</th>
+        <th scope="col">Detay</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in order %}
+      <tr>
+      <tr>
+        <th scope="row" style="color: rgb(54, 80, 255);font-family:arial;font-size:small;padding-top:15px;">
+          {{ order.id }}</a></th>
+        <td style="font-size:small;">{{ order.user.username }}</td>
+        <td style="font-size:small;">{{ order.status }}</td>
+        <td style="font-size:small;">{{ order.created_at }}</td>
+        <td><a href="/order/orders/{{ order.id }}" class="btn btn-success" style="font-size: x-small;"> İncele</a></td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+
+{% else %}
+
+<p style="font-weight: unset;font-style: italic;">Henüz bir sipariş yok.</p>
+
+
+{% endif %}
+
+
+
+
+
+{% endblock body %}

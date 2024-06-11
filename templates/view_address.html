@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+{% if adres %}
+    <div><h3 style="font-family: fantasy;" >Adresim</h3></div>
+    <hr>
+
+        {% for adres in adres %}
+        
+        <div class="card">
+            <div class="card-header" style="font-weight:bold;">
+              {{adres.title}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight:unset;">{{adres.name_lastname}}</h5>
+              <p class="card-text" style="font-weight: lighter;">Tel: +90 {{adres.phoneNumber}}</p>
+              <p class="card-text" style="font-weight: lighter;">E-Posta: {{adres.eposta}}</p>
+              <h6>Adres:</h6><hr>
+              <p class="card-text" style="font-weight: lighter;">{{adres.adres}}</p>
+              <br>
+              <a href="{% url 'order:update_address' adres.id %}" class="btn btn-success" style="font-size: x-small;">Güncelle</a> 
+              <a href="{% url 'order:delete_address' adres.id %}" class="btn btn-danger" style="font-size: x-small;">Sil</a> 
+            </div>
+          </div>
+<br>
+<br>
+
+
+        {% endfor %}
+        <hr>
+          <p style="font-weight: unset;font-style: italic;">Yeni bir adres ekle</p>
+          <a href="/order/add_address/" class="btn btn-success" style="font-size: small;">Adres Ekle <i class="bi bi-house-add-fill"></i></a>
+
+            <br><br><br><br><br><br><br>
+
+
+{% else %}
+      <h3>Henüz bir adres eklemediniz.</h3>
+      <hr>
+      <p style="font-weight: unset;font-style: italic;">Hemen bir adres oluştur</p>
+      <a href="/order/add_address/" class="btn btn-success" style="font-size: small;">Adres Ekle</a>
+{% endif %}
+
+
+{% endblock body %}
+
+

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3 style="text-align: center;font-family:fantasy;">Kullanıcılar</h3>
+<hr>
+<br>
+{% if user %}
+
+<div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Kullanıcı</th>
+        <th scope="col">Siparişlere git</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in user %}
+      {% if not user.is_superuser %}
+      <tr>
+        <tr>
+          <th scope="row" style="color: rgb(54, 80, 255);font-family:arial;font-size:small;padding-top:15px;">
+            {{ user.id }}</a></th>
+          <td style="font-size:small;">{{ user.username }}</td>
+          <td><a href="/order/users_orders/{{ user.id }}" class="btn btn-success" style="font-size: x-small;"> Siparişler</a></td>
+        </tr>
+    
+      {% endif %}
+      
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+
+{% else %}
+
+<p style="font-weight: unset;font-style: italic;">Henüz bir sipariş yok.</p>
+
+
+{% endif %}
+
+
+
+
+
+{% endblock body %}

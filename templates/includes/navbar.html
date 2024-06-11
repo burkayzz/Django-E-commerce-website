@@ -1,0 +1,137 @@
+<nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #FFFFFF ;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/" 
+            style="font-weight:bold;font-display: unset;font-family: fantasy;font-size: 25px;margin-left: 30px;">PC Lab</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/Catalog/product"><em>Tüm Ürünler</em></a>
+                </li>
+
+
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="color:black;"><em>Ekle</em>
+
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Catalog/add_product" style="color:black;"><em>Ürün Ekle</em></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Catalog/categories" style="color:black;"><em>Kategoriler</em></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Catalog/brands" style="color:black;"><em>Markalar</em></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="color:black;"><em>Kargo</em>
+
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/order/cargos" style="color:black;"><em>Kargolar</em></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/order/create_cargos" style="color:black;"><em>Kargoya Ver</em></a>
+                        </li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="color:black;"><em>Yönetim</em>
+
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/order/order" style="color:black;"><em>Siparişler</em></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/order/users" style="color:black;"><em>Kullanıcılar</em></a>
+                        </li>
+                        
+                    </ul>
+                </li>
+
+
+                
+               
+                
+                
+                <li class="nav-item active">
+                    <a class="nav-link" href="/user/logout" style="font-weight:bold;color:black;"><em>Çıkış Yap</em></a>
+                </li>
+                {% else %}
+                <li class="nav-item active" style="margin-right:7px;">
+                    <a class="nav-link" href="/order/cart" style="color:black;"><em>Sepetim <i class="bi bi-basket"></i></em></a>
+                </li>
+                 <li class="nav-item active" style="margin-right:7px;">
+                            <a class="nav-link" href="/order/orders" style="color:black;"><em>Siparişlerim</em></a>
+                        </li>
+                <li class="nav-item dropdown" style="margin-right: 30px ;">
+                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="color:black;"><i class="bi bi-person-lines-fill"></i>
+
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown" >
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/user/account" style="color:black;"><em>Hesap</em></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/order/view_address" style="color:black;"><em>Adreslerim</em></a>
+                        </li>
+                       
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/user/logout" style="font-weight:bold;"
+                                style="color:black;"><em>Çıkış Yap</em></a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/user/register" style="color:black;"><em>Kayıt Ol</em></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/user/login" style="color:black;"><em>Giriş Yap</em></a>
+                </li>
+                {% endif %}
+            </ul>
+
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
