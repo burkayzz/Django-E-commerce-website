@@ -189,10 +189,19 @@ def complete_order(request,id):
 
 #Sipariş Detayı
 def order_detail(request, id):
+
+    
+
+
     user = request.user
     order = Order.objects.get(id=id)
-    item = OrderItem.objects.filter(order=order)
+
+    if order.user!=user and user.is_superuser!=True:
+        messages.info(request,"Size ait olmayan bir siparişin detayını görüntüleyemezsiniz..")
+        return redirect('order:orders')
     
+        
+    item = OrderItem.objects.filter(order=order)
     
     
 
